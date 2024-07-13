@@ -1,0 +1,23 @@
+manifestVersion: v1.0.0
+package:
+  name: Scikit-learn Tabular Example
+  description: 'Train a model using Scikit-learn and Tabular data '
+  license: Apache-2.0
+  authors: [Jozu]
+model:
+  name: joblib Model
+  path: ./models/scikit_class_model_v2.joblib
+  license: Apache-2.0
+  framework: Scikit-learn
+  version: 1.0.0
+  description: Example model using Scikit-learn
+code:
+  - path: ./notebooks
+    description: Model training and testing code
+datasets:
+  - name: training data
+    path: ./data/train.csv
+    description: This contains the training data
+  - name: training data
+    path: ./data/test.csv
+    description: This contains the test data
