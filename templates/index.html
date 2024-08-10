@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Customer Satisfaction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        form {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            width: calc(50% - 20px);
+            float: left;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            clear: both;
+            display: block;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .form-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Predict Customer Satisfaction</h1>
+    <form action="{{ url_for('predict') }}" method="POST">
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <input type="text" id="gender" name="gender" placeholder="Enter gender">
+        </div>
+        <div class="form-group">
+            <label for="customer">Customer Type</label>
+            <input type="text" id="customer" name="customer" placeholder="Enter customer type (e.g., Loyal Customer)">
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="Enter age">
+        </div>
+        <div class="form-group">
+            <label for="travel_type">Travel Type</label>
+            <input type="text" id="travel_type" name="travel_type" placeholder="Enter travel type (e.g., Business Travel)">
+        </div>
+        <div class="form-group">
+            <label for="flight_class">Class</label>
+            <input type="text" id="flight_class" name="flight_class" placeholder="Enter class (e.g., Economy)">
+        </div>
+        <div class="form-group">
+            <label for="flight_distance">Flight Distance (miles)</label>
+            <input type="number" id="flight_distance" name="flight_distance" placeholder="Enter flight distance">
+        </div>
+        <div class="form-group">
+            <label for="wifi_service">WiFi Service (Rating 1-5)</label>
+            <input type="number" id="wifi_service" name="wifi_service" placeholder="Rate WiFi service">
+        </div>
+        <div class="form-group">
+            <label for="time">Departure/Arrival Time Convenience (Rating 1-5)</label>
+            <input type="number" id="time" name="time" placeholder="Rate time convenience">
+        </div>
+        <div class="form-group">
+            <label for="booking">Ease of Online Booking (Rating 1-5)</label>
+            <input type="number" id="booking" name="booking" placeholder="Rate online booking experience">
+        </div>
+        <div class="form-group">
+            <label for="gate_location">Gate Location (Rating 1-5)</label>
+            <input type="number" id="gate_location" name="gate_location" placeholder="Rate gate location">
+        </div>
+        <div class="form-group">
+            <label for="food_drinks">Food and Drinks (Rating 1-5)</label>
+            <input type="number" id="food_drinks" name="food_drinks" placeholder="Rate food and drinks">
+        </div>
+        <div class="form-group">
+            <label for="boarding">Ease of Boarding (Rating 1-5)</label>
+            <input type="number" id="boarding" name="boarding" placeholder="Rate boarding process">
+        </div>
+        <div class="form-group">
+            <label for="seat_comfort">Seat Comfort (Rating 1-5)</label>
+            <input type="number" id="seat_comfort" name="seat_comfort" placeholder="Rate seat comfort">
+        </div>
+        <div class="form-group">
+            <label for="entertainment">In-flight Entertainment (Rating 1-5)</label>
+            <input type="number" id="entertainment" name="entertainment" placeholder="Rate in-flight entertainment">
+        </div>
+        <div class="form-group">
+            <label for="onboard_service">Onboard Service (Rating 1-5)</label>
+            <input type="number" id="onboard_service" name="onboard_service" placeholder="Rate onboard service">
+        </div>
+        <div class="form-group">
+            <label for="leg_room_service">Leg Room Service (Rating 1-5)</label>
+            <input type="number" id="leg_room_service" name="leg_room_service" placeholder="Rate leg room service">
+        </div>
+        <div class="form-group">
+            <label for="baggage">Baggage Handling (Rating 1-5)</label>
+            <input type="number" id="baggage" name="baggage" placeholder="Rate baggage handling">
+        </div>
+        <div class="form-group">
+            <label for="checkinservice">Check-in Service (Rating 1-5)</label>
+            <input type="number" id="checkinservice" name="checkinservice" placeholder="Rate check-in service">
+        </div>
+        <div class="form-group">
+            <label for="inflight_service">In-flight Service (Rating 1-5)</label>
+            <input type="number" id="inflight_service" name="inflight_service" placeholder="Rate in-flight service">
+        </div>
+        <div class="form-group">
+            <label for="cleanliness">Cleanliness (Rating 1-5)</label>
+            <input type="number" id="cleanliness" name="cleanliness" placeholder="Rate cleanliness">
+        </div>
+        <div class="form-group">
+            <label for="departure_delay">Departure Delay (minutes)</label>
+            <input type="number" id="departure_delay" name="departure_delay" placeholder="Enter departure delay in minutes">
+        </div>
+        <div class="form-group">
+            <label for="arrival_delay">Arrival Delay (minutes)</label>
+            <input type="number" id="arrival_delay" name="arrival_delay" placeholder="Enter arrival delay in minutes">
+        </div>
+        <input type="submit" id="submit" value="Predict Satisfaction">
+    </form>
+
+    <p>{{ prediction_text }}</p>
+</body>
+</html>

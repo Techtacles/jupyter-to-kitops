@@ -1,3 +1,5 @@
 images
 .DS_Store
 .ipynb_checkpoints
+local.py
+tst_model
