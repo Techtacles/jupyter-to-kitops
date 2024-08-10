@@ -3,3 +3,4 @@ images
 .ipynb_checkpoints
 local.py
 tst_model
+__pycache__/*
